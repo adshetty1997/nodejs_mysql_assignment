@@ -1,6 +1,4 @@
 import mysql from "mysql2";
-import dotenv from "dotenv";
-dotenv.config();
 
 const pool = mysql.createPool({
     host:process.env.MYSQL_HOST,
@@ -9,7 +7,7 @@ const pool = mysql.createPool({
     database:process.env.MYSQL_DATABASE
 }).promise();
 
-const checkTables = async() => {
+export const checkTables = async() => {
     let tablesList = (await pool.query("SHOW TABLES"))[0].map(x=>Object.values(x)[0]);
     if(!tablesList.find(x=>x==="users")){
         createUserTable();
@@ -24,76 +22,74 @@ const checkTables = async() => {
     }
 }
 
-checkTables();
-
 // --------------------------------USER-----------------------------------------------------
 
-const createUserTable = async()=> {
+export const createUserTable = async()=> {
     await pool.query(
         "CREATE TABLE users (id varchar(15),name varchar(255),role varchar(20),email varchar(255),password varchar(255))"
         );
 }
 
-const createUser = async()=> {
+export const createUser = async()=> {
 
 }
 
-const getUser = async()=> {
+export const getUser = async()=> {
 
 }
 
-const updateUser = async()=> {
+export const updateUser = async()=> {
 
 }
 
-const deleteUser = async()=> {
+export const deleteUser = async()=> {
 
 }
 
 // --------------------------------FEED-----------------------------------------------------
 
-const createFeedTable = async()=> {
+export const createFeedTable = async()=> {
     await pool.query(
         "CREATE TABLE feeds (id varchar(15),name varchar(255),url varchar(255),description varchar(255))"
         );
 }
 
-const createFeed = async()=> {
+export const createFeed = async()=> {
 
 }
 
-const getFeed = async()=> {
+export const getFeed = async()=> {
 
 }
 
-const updateFeed = async()=> {
+export const updateFeed = async()=> {
 
 }
 
-const deleteFeed = async()=> {
+export const deleteFeed = async()=> {
 
 }
 
 // --------------------------------ALLOWED FEED-----------------------------------------------------
 
-const createAllowedFeedsTable = async()=> {
+export const createAllowedFeedsTable = async()=> {
     await pool.query(
         "CREATE TABLE allowedfeeds (id varchar(15),userId varchar(15),feedId varchar(15),deletePermission boolean)"
         );
 }
 
-const createEntry= async()=> {
+export const createEntry= async()=> {
     
 }
 
-const getEntries = async()=> {
+export const getEntries = async()=> {
     
 }
 
-const updateEntries = async()=> {
+export const updateEntries = async()=> {
     
 }
 
-const deleteEntries = async()=> {
+export const deleteEntries = async()=> {
     
 }
