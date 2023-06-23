@@ -42,6 +42,15 @@ export const logInfo = (message) => {
     writeStream.write(`${Date.now()} : `+message+"\n");
 }
 
+export const getLogs = async() => {
+    try {
+        const data = await fs.readFile((filePath+currentFile), { encoding: 'utf8' });
+        return data;
+      } catch (err) {
+        throw(err);
+      }
+}
+
 export const startLogging = () => {
     setInterval(()=>{
         // create new File
