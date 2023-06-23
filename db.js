@@ -78,7 +78,7 @@ export const deleteUser = async(id)=> {
 
 export const createFeedTable = async()=> {
     await pool.query(
-        "CREATE TABLE feeds (id int,name varchar(255),url varchar(255),description varchar(255))"
+        "CREATE TABLE feeds (id int NOT NULL AUTO_INCREMENT PRIMARY KEY,name varchar(255),url varchar(255),description varchar(255))"
         );
 }
 
@@ -136,7 +136,7 @@ export const deleteFeed = async(id)=> {
 
 export const createAllowedFeedsTable = async()=> {
     await pool.query(
-        "CREATE TABLE allowedfeeds (id varchar(15),userId int,feedId int,deletePermission boolean)"
+        "CREATE TABLE allowedfeeds (id int NOT NULL AUTO_INCREMENT PRIMARY KEY,userId int,feedId int,deletePermission boolean)"
         );
 }
 
